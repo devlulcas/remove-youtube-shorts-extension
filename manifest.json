@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Remove YouTube Shorts",
   "description": "Remove YouTube Shorts from your feed",
-  "version": "1.0",
+  "version": "1.0.1",
   "action": {
     "default_icon": "favicon.png"
   },
