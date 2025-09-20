@@ -3,7 +3,7 @@ ytd-guide-entry-renderer:has([title="Shorts"]) {
   display: none !important;
 }
 
-/* Feed */
+/* Feed and video player side panel*/
 ytd-grid-video-renderer:has([overlay-style="SHORTS"]),
 ytd-reel-shelf-renderer,
 ytd-rich-shelf-renderer,
