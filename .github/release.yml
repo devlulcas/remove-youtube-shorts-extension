@@ -1,0 +1,76 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g., v1.0.0)"
+        required: true
+        default: "v1.0.0"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify extension files
+        run: |
+          echo "Extension files:"
+          ls -la
+          echo "Checking for required files:"
+          test -f manifest.json || (echo "manifest.json missing" && exit 1)
+          test -f background.js || (echo "background.js missing" && exit 1)
+          test -f injectable.css || (echo "injectable.css missing" && exit 1)
+          echo "All required files are present"
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create extension zip
+        run: |
+          zip -r remove-youtube-shorts-extension-${{ steps.version.outputs.version }}.zip manifest.json background.js injectable.css favicon.png README.md
+          echo "Extension zip created:"
+          ls -la remove-youtube-shorts-extension-${{ steps.version.outputs.version }}.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Remove YouTube Shorts Extension ${{ steps.version.outputs.version }}
+          body: |
+            ## Remove YouTube Shorts Extension ${{ steps.version.outputs.version }}
+
+            An extension to remove YouTube Shorts from your YouTube feed.
+
+            ### Installation
+            1. Download the `remove-youtube-shorts-extension-${{ steps.version.outputs.version }}.zip` file
+            2. Extract the zip file
+            3. Open Chrome and go to `chrome://extensions/`
+            4. Enable "Developer mode" in the top right
+            5. Click "Load unpacked" and select the extracted folder
+            6. Click on the extension icon to enable/disable the extension
+
+            ### How it works
+            The extension injects CSS to hide YouTube Shorts using the `:has` selector to find and hide short video elements.
+
+            ### Changes
+            - See commit history for detailed changes
+          files: remove-youtube-shorts-extension-${{ steps.version.outputs.version }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
