@@ -10,3 +10,8 @@ ytd-rich-shelf-renderer,
 ytd-video-renderer:has([aria-label="Shorts"]) {
   display: none !important;
 }
+
+/* Search results */
+grid-shelf-view-model:has(ytm-shorts-lockup-view-model-v2) {
+  display: none !important;
+}
