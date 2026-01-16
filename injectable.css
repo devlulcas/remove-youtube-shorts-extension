@@ -1,12 +1,44 @@
 /* Sidebar */
 ytd-guide-entry-renderer:has([title="Shorts"]) {
+  outline: 1px solid red !important;
   display: none !important;
 }
 
 /* Feed */
-ytd-grid-video-renderer:has([overlay-style="SHORTS"]),
-ytd-reel-shelf-renderer,
-ytd-rich-shelf-renderer,
+ytd-grid-video-renderer:has([overlay-style="SHORTS"]) {
+  outline: 1px solid fuchsia !important;
+  display: none !important;
+}
+
+ytd-reel-shelf-renderer {
+  outline: 1px solid blue !important;
+  display: none !important;
+}
+
+ytd-rich-shelf-renderer:not(:has(yt-collections-stack)) {
+  outline: 1px solid yellow !important;
+  display: none !important;
+}
+
 ytd-video-renderer:has([aria-label="Shorts"]) {
+  outline: 1px solid green !important;
+  display: none !important;
+}
+
+/* Channel tab */
+[tab-title="Shorts"] {
+  outline: 1px solid gold !important;
+  display: none !important;
+}
+
+/* Search results */
+ytd-search-header-renderer yt-chip-cloud-chip-renderer:nth-child(2) {
+  outline: 1px solid blueviolet !important;
+  display: none !important;
+}
+
+/* History section */
+[class*="ytChipBarViewModelChipWrapper"]:has([aria-label="Shorts"]) {
+  outline: 1px solid magenta !important;
   display: none !important;
 }

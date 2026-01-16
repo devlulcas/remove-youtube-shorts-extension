@@ -10,6 +10,20 @@ An extension to remove YouTube Shorts from YouTube.
 
 ![selected](https://raw.githubusercontent.com/devlulcas/remove-youtube-shorts/main/.github/images/preview.png)
 
+### Removes:
+
+- Shorts button on the sidebar
+- Shorts section on the homepage
+- Shorts section on the subscriptions page
+- Shorts tab in channel, search and history page
+- Short videos on the recommended videos when a video is open
+- Short videos on search and history
+- Everything related to shorts that we can identify in the HTML
+
+The objective is to make it seem like shorts were never added to your youtube.
+
+If you want to know exactly what is being removed you need to run the extension locally and remove the `display: none !important;` from the `injectable.css` file.
+
 ### Why?
 
 YouTube Shorts can be annoying, especially if you don't like them. This extension removes them from YouTube.
