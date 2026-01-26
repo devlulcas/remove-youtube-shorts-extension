@@ -52,3 +52,7 @@ YouTube Shorts can be annoying, especially if you don't like them. This extensio
 ## How it works
 
 I just check if you are in an YouTube page and inject a CSS stylesheet to hide the shorts using the `:has` selector to find the shorts.
+
+## Credits
+Hand SVG = https://www.svgrepo.com/svg/499204/hand
+YT Shorts = https://upload.wikimedia.org/wikipedia/commons/f/fc/Youtube_shorts_icon.svg
