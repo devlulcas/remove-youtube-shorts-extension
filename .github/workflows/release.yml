@@ -29,6 +29,10 @@ jobs:
           test -f manifest.json || (echo "manifest.json missing" && exit 1)
           test -f background.js || (echo "background.js missing" && exit 1)
           test -f injectable.css || (echo "injectable.css missing" && exit 1)
+          test -f icons/icon16.png || (echo "icons/icon16.png missing" && exit 1)
+          test -f icons/icon32.png || (echo "icons/icon32.png missing" && exit 1)
+          test -f icons/icon48.png || (echo "icons/icon48.png missing" && exit 1)
+          test -f icons/icon128.png || (echo "icons/icon128.png missing" && exit 1)
           echo "All required files are present"
 
       - name: Get version
@@ -42,7 +46,7 @@ jobs:
 
       - name: Create extension zip
         run: |
-          zip -r remove-youtube-shorts-extension-${{ steps.version.outputs.version }}.zip manifest.json background.js injectable.css favicon.png README.md
+          zip -r remove-youtube-shorts-extension-${{ steps.version.outputs.version }}.zip manifest.json background.js injectable.css icons README.md
           echo "Extension zip created:"
           ls -la remove-youtube-shorts-extension-${{ steps.version.outputs.version }}.zip
 
